@@ -33,7 +33,7 @@ jobs:
         run: pnpm install
 
       - name: Build docs
-        run: pnpm --filter docs build
+        run: pnpm --filter start-authjs-docs build
 
       - uses: actions/configure-pages@v5
 
