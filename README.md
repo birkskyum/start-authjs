@@ -77,7 +77,3 @@ const session = await getSession(request, authConfig)
 ## Providers
 
 All [Auth.js providers](https://authjs.dev/getting-started/providers) are supported: GitHub, Google, Auth0, Discord, Credentials, and 80+ more.
-
-## License
-
-MIT-license
