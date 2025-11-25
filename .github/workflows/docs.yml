@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Clean VitePress cache
+        run: rm -rf docs/.vitepress/cache docs/.vitepress/dist
+
       - name: Build docs
         run: pnpm --filter start-authjs-docs build
 
