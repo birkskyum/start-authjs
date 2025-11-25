@@ -6,11 +6,13 @@ Auth.js (NextAuth.js v5) integration for TanStack Start applications.
 
 ```bash
 npm install start-authjs @auth/core
+```
 
-Quick Start
+## Quick Start
 
-1. Set Environment Variables
+### 1. Set Environment Variables
 
+```bash
 AUTH_SECRET=your-secret-key  # openssl rand -base64 32
 AUTH_URL=http://localhost:3000/api/auth
 
@@ -18,9 +20,11 @@ AUTH_URL=http://localhost:3000/api/auth
 AUTH_AUTH0_ID=your-client-id
 AUTH_AUTH0_SECRET=your-client-secret
 AUTH_AUTH0_ISSUER=https://your-tenant.auth0.com
+```
 
-2. Create Auth Configuration
+### 2. Create Auth Configuration
 
+```ts
 // src/utils/auth.ts
 import Auth0 from '@auth/core/providers/auth0'
 import type { StartAuthJSConfig } from 'start-authjs'
@@ -29,9 +33,11 @@ export const authConfig: StartAuthJSConfig = {
   secret: process.env.AUTH_SECRET,
   providers: [Auth0()],
 }
+```
 
-3. Create API Route
+### 3. Create API Route
 
+```ts
 // src/routes/api/auth/$.ts
 import { createFileRoute } from '@tanstack/solid-router'
 import { StartAuthJS } from 'start-authjs'
@@ -47,29 +53,31 @@ export const Route = createFileRoute('/api/auth/$')({
     },
   },
 })
+```
 
-4. Get Session
+### 4. Get Session
 
+```ts
 import { getSession } from 'start-authjs'
 import { authConfig } from '~/utils/auth'
 
 const session = await getSession(request, authConfig)
+```
 
-API
+## API
 
-| Export        | Description                               |
-|---------------|-------------------------------------------|
-| StartAuthJS  | Creates GET/POST handlers for auth routes |
-| getSession    | Get current session from request          |
-| auth          | Get session with cookie forwarding        |
-| serverSignIn  | Programmatic sign in                      |
-| serverSignOut | Programmatic sign out                     |
+| Export | Description |
+|--------|-------------|
+| `StartAuthJS` | Creates GET/POST handlers for auth routes |
+| `getSession` | Get current session from request |
+| `auth` | Get session with cookie forwarding |
+| `serverSignIn` | Programmatic sign in |
+| `serverSignOut` | Programmatic sign out |
 
-Providers
+## Providers
 
-All https://authjs.dev/getting-started/providers are supported: GitHub, Google, Auth0, Discord, 
-Credentials, and 80+ more.
+All [Auth.js providers](https://authjs.dev/getting-started/providers) are supported: GitHub, Google, Auth0, Discord, Credentials, and 80+ more.
 
-License
+## License
 
 MIT
