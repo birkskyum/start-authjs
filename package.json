@@ -53,7 +53,10 @@
     "set-cookie-parser": "^2.6.0"
   },
   "devDependencies": {
-    "@types/set-cookie-parser": "^2.4.9"
+    "@tanstack/config": "^0.22.1",
+    "@types/set-cookie-parser": "^2.4.9",
+    "vite": "^7.2.4",
+    "vitest": "^4.0.13"
   },
   "peerDependencies": {
     "@auth/core": ">=0.38.0"
