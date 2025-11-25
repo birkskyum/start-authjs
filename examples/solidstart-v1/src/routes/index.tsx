@@ -6,10 +6,7 @@ export default function Home() {
       <Title>SolidStart + Auth.js</Title>
       <h1>SolidStart + Auth.js Example</h1>
       <p>This example demonstrates Auth.js integration with SolidStart using the start-authjs package.</p>
-      <ul>
-        <li>Click <strong>Sign In</strong> to authenticate with Auth0</li>
-        <li>Visit the <a href="/protected">Protected</a> page to see session data</li>
-      </ul>
+      <p>Click <strong>Sign In</strong> in the header to authenticate with Auth0, or visit the <a href="/protected">Protected</a> page to see session data.</p>
     </main>
   );
 }

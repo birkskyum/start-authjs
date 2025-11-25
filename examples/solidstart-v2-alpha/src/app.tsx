@@ -22,20 +22,19 @@ function RootLayout(props: ParentProps) {
       <Title>SolidStart + Auth.js</Title>
       <nav style={{ padding: "1rem", display: "flex", gap: "1rem", "align-items": "center", "background-color": "#f5f5f5" }}>
         <a href="/">Home</a>
-        <a href="/about">About</a>
         <a href="/protected">Protected</a>
         <div style={{ "margin-left": "auto", display: "flex", gap: "1rem", "align-items": "center" }}>
           <Suspense>
             <Show
               when={session()}
               fallback={
-                <a href="/api/auth/signin" style={{ padding: "0.5rem 1rem", "background-color": "#3b82f6", color: "white", "border-radius": "0.25rem", "text-decoration": "none" }}>
+                <a rel="external" href="/api/auth/signin" style={{ padding: "0.5rem 1rem", "background-color": "#3b82f6", color: "white", "border-radius": "0.25rem", "text-decoration": "none" }}>
                   Sign In
                 </a>
               }
             >
               <span>{session()?.user?.name || session()?.user?.email}</span>
-              <a href="/api/auth/signout" style={{ padding: "0.5rem 1rem", "background-color": "#ef4444", color: "white", "border-radius": "0.25rem", "text-decoration": "none" }}>
+              <a rel="external" href="/api/auth/signout" style={{ padding: "0.5rem 1rem", "background-color": "#ef4444", color: "white", "border-radius": "0.25rem", "text-decoration": "none" }}>
                 Sign Out
               </a>
             </Show>

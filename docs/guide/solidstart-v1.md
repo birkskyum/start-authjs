@@ -126,15 +126,19 @@ function AuthStatus() {
     <Suspense>
       <Show
         when={session()}
-        fallback={<a href="/api/auth/signin">Sign In</a>}
+        fallback={<a rel="external" href="/api/auth/signin">Sign In</a>}
       >
         <span>{session()?.user?.name}</span>
-        <a href="/api/auth/signout">Sign Out</a>
+        <a rel="external" href="/api/auth/signout">Sign Out</a>
       </Show>
     </Suspense>
   );
 }
 ```
+
+::: warning Important
+Use `rel="external"` on all auth links (`/api/auth/*`) to bypass Solid Router's client-side navigation. Without this, you'll see a "page not found" flash before the auth page loads.
+:::
 
 ## Full Example
 

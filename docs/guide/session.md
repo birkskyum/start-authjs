@@ -87,7 +87,9 @@ function UserProfile() {
 
 ### Client-Side Navigation
 
-```html
+::: code-group
+
+```html [TanStack Start]
 <!-- Sign in -->
 <a href="/api/auth/signin">Sign In</a>
 
@@ -97,6 +99,21 @@ function UserProfile() {
 <!-- Sign in with specific provider -->
 <a href="/api/auth/signin/github">Sign in with GitHub</a>
 ```
+
+```html [SolidStart]
+<!-- Use rel="external" to bypass client-side routing -->
+<a rel="external" href="/api/auth/signin">Sign In</a>
+
+<a rel="external" href="/api/auth/signout">Sign Out</a>
+
+<a rel="external" href="/api/auth/signin/github">Sign in with GitHub</a>
+```
+
+:::
+
+::: warning SolidStart
+In SolidStart, you must use `rel="external"` on auth links to prevent the Solid Router from intercepting them. Without this, you'll see a "page not found" error before the auth page loads.
+:::
 
 ### Programmatic Sign In/Out
 

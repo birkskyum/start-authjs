@@ -16,7 +16,7 @@ export default function Protected() {
           fallback={
             <div>
               <p>You must be signed in to view this page.</p>
-              <a href="/api/auth/signin">Sign in</a>
+              <a rel="external" href="/api/auth/signin">Sign in</a>
             </div>
           }
         >
