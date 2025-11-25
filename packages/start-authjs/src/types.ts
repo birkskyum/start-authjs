@@ -1,5 +1,24 @@
 import type { AuthConfig } from '@auth/core'
-import type { Session } from '@auth/core/types'
+
+/**
+ * User object in the session
+ * Clean type without index signatures for better type inference
+ */
+export interface AuthUser {
+  id?: string
+  name?: string | null
+  email?: string | null
+  image?: string | null
+}
+
+/**
+ * Session returned by getSession and auth functions
+ * Clean type without index signatures for better type inference in TanStack Start
+ */
+export interface AuthSession {
+  user?: AuthUser
+  expires: string
+}
 
 /**
  * Configuration for Start Auth.js
@@ -70,7 +89,7 @@ export interface InternalUrl {
 export type SessionState =
   | {
       status: 'authenticated'
-      data: Session
+      data: AuthSession
     }
   | {
       status: 'unauthenticated'

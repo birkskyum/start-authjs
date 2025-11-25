@@ -1,10 +1,9 @@
 import { Auth, createActionURL } from '@auth/core'
 import { parse as parseCookies } from 'set-cookie-parser'
 import { setEnvDefaults } from './utils'
-import type { Session } from '@auth/core/types'
-import type { AuthRequestContext, StartAuthJSConfig } from './types'
+import type { AuthRequestContext, AuthSession, StartAuthJSConfig } from './types'
 
-export type GetSessionResult = Promise<Session | null>
+export type GetSessionResult = Promise<AuthSession | null>
 
 /**
  * Get the current session from a request
@@ -63,7 +62,7 @@ export async function getSession(
 export async function auth(
   context: AuthRequestContext,
   config: StartAuthJSConfig,
-): Promise<Session | null> {
+): Promise<AuthSession | null> {
   setEnvDefaults(process.env, config)
   config.trustHost ??= true
 

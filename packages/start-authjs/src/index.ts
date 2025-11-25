@@ -4,6 +4,8 @@ export { serverSignIn, serverSignOut } from './actions'
 export { authMiddleware } from './middleware'
 export { setEnvDefaults, getBasePath, parseUrl } from './utils'
 export type {
+  AuthSession,
+  AuthUser,
   StartAuthJSConfig,
   SignInOptions,
   SignOutOptions,

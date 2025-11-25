@@ -28,22 +28,26 @@ function Home() {
             </p>
           }
         >
-          <div class="space-y-2">
-            <p class="text-green-600 font-medium">Authenticated</p>
-            <Show when={routeContext().session?.user?.image}>
-              <img
-                src={routeContext().session?.user?.image!}
-                alt="Avatar"
-                class="w-16 h-16 rounded-full"
-              />
-            </Show>
-            <p>
-              <strong>Name:</strong> {routeContext().session?.user?.name || 'N/A'}
-            </p>
-            <p>
-              <strong>Email:</strong> {routeContext().session?.user?.email || 'N/A'}
-            </p>
-          </div>
+          {(session) => (
+            <div class="space-y-2">
+              <p class="text-green-600 font-medium">Authenticated</p>
+              <Show when={session().user?.image}>
+                {(image) => (
+                  <img
+                    src={image()}
+                    alt="Avatar"
+                    class="w-16 h-16 rounded-full"
+                  />
+                )}
+              </Show>
+              <p>
+                <strong>Name:</strong> {session().user?.name ?? 'N/A'}
+              </p>
+              <p>
+                <strong>Email:</strong> {session().user?.email ?? 'N/A'}
+              </p>
+            </div>
+          )}
         </Show>
       </div>
     </div>

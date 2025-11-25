@@ -1,10 +1,11 @@
 /// <reference types="vite/client" />
+import type { AuthSession } from 'start-authjs'
 import {
   HeadContent,
   Link,
   Outlet,
   Scripts,
-  createRootRoute,
+  createRootRouteWithContext,
 } from '@tanstack/solid-router'
 import { TanStackRouterDevtools } from '@tanstack/solid-router-devtools'
 import { createServerFn } from '@tanstack/solid-start'
@@ -16,17 +17,20 @@ import type { JSX } from 'solid-js'
 import { authConfig } from '~/utils/auth'
 import appCss from '~/styles/app.css?url'
 
+interface RouterContext {
+  session: AuthSession | null
+}
+
 const fetchSession = createServerFn({ method: 'GET' }).handler(async () => {
   const request = getRequest()
   const session = await getSession(request, authConfig)
   return session
 })
 
-export const Route = createRootRoute({
-  beforeLoad: async ({ context }) => {
+export const Route = createRootRouteWithContext<RouterContext>()({
+  beforeLoad: async () => {
     const session = await fetchSession()
     return {
-      ...context,
       session,
     }
   },
@@ -77,43 +81,41 @@ function NavBar() {
   const routeContext = Route.useRouteContext()
 
   return (
-
-
-        <nav class="p-4 flex gap-4 items-center bg-gray-100">
-          <Link
-            to="/"
-            activeProps={{ class: 'font-bold' }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>
-          <Link to="/protected" activeProps={{ class: 'font-bold' }}>
-            Protected
-          </Link>
-          <div class="ml-auto flex items-center gap-4">
-            <Show
-              when={routeContext().session}
-              fallback={
-                <Link
-                  to="/login"
-                  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Sign In
-                </Link>
-              }
+    <nav class="p-4 flex gap-4 items-center bg-gray-100">
+      <Link
+        to="/"
+        activeProps={{ class: 'font-bold' }}
+        activeOptions={{ exact: true }}
+      >
+        Home
+      </Link>
+      <Link to="/protected" activeProps={{ class: 'font-bold' }}>
+        Protected
+      </Link>
+      <div class="ml-auto flex items-center gap-4">
+        <Show
+          when={routeContext().session}
+          fallback={
+            <Link
+              to="/login"
+              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              <span class="text-gray-600">
-                {routeContext().session?.user?.name ||
-                  routeContext().session?.user?.email}
-              </span>
-              <a
-                href="/api/auth/signout"
-                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-              >
-                Sign Out
-              </a>
-            </Show>
-          </div>
-        </nav>
+              Sign In
+            </Link>
+          }
+        >
+          <span class="text-gray-600">
+            {routeContext().session?.user?.name ||
+              routeContext().session?.user?.email}
+          </span>
+          <a
+            href="/api/auth/signout"
+            class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Sign Out
+          </a>
+        </Show>
+      </div>
+    </nav>
   )
 }

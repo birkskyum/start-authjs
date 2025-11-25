@@ -22,25 +22,29 @@ function Protected() {
 
       <div class="bg-green-50 border border-green-200 rounded-lg p-6">
         <h2 class="text-xl font-semibold mb-4 text-green-800">
-          Welcome, {routeContext().session?.user?.name || 'User'}!
+          Welcome, {routeContext().session?.user?.name ?? 'User'}!
         </h2>
 
         <Show when={routeContext().session?.user}>
-          <div class="space-y-2 text-green-700">
-            <p>
-              <strong>Email:</strong> {routeContext().session?.user?.email || 'N/A'}
-            </p>
-            <Show when={routeContext().session?.user?.image}>
-              <div>
-                <strong>Avatar:</strong>
-                <img
-                  src={routeContext().session?.user?.image!}
-                  alt="User avatar"
-                  class="w-20 h-20 rounded-full mt-2"
-                />
-              </div>
-            </Show>
-          </div>
+          {(user) => (
+            <div class="space-y-2 text-green-700">
+              <p>
+                <strong>Email:</strong> {user().email ?? 'N/A'}
+              </p>
+              <Show when={user().image}>
+                {(image) => (
+                  <div>
+                    <strong>Avatar:</strong>
+                    <img
+                      src={image()}
+                      alt="User avatar"
+                      class="w-20 h-20 rounded-full mt-2"
+                    />
+                  </div>
+                )}
+              </Show>
+            </div>
+          )}
         </Show>
       </div>
 
