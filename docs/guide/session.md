@@ -34,10 +34,24 @@ const session = await auth({ request, response }, authConfig)
 
 ## Using Session in Components
 
-Access the session via route context:
+::: code-group
 
-```tsx
-// Solid.js
+```tsx [TanStack Start (React)]
+import { Route } from './__root'
+
+function UserProfile() {
+  const { session } = Route.useRouteContext()
+
+  if (!session) return null
+
+  return <p>Welcome, {session.user?.name}</p>
+}
+```
+
+```tsx [TanStack Start (Solid)]
+import { Show } from 'solid-js'
+import { Route } from './__root'
+
 function UserProfile() {
   const context = Route.useRouteContext()
 
@@ -49,16 +63,25 @@ function UserProfile() {
 }
 ```
 
-```tsx
-// React
+```tsx [SolidStart]
+import { createAsync } from "@solidjs/router"
+import { Show, Suspense } from "solid-js"
+import { getSessionData } from "~/app"
+
 function UserProfile() {
-  const { session } = Route.useRouteContext()
+  const session = createAsync(() => getSessionData())
 
-  if (!session) return null
-
-  return <p>Welcome, {session.user?.name}</p>
+  return (
+    <Suspense>
+      <Show when={session()}>
+        <p>Welcome, {session()?.user?.name}</p>
+      </Show>
+    </Suspense>
+  )
 }
 ```
+
+:::
 
 ## Sign In / Sign Out
 

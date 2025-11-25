@@ -1,6 +1,11 @@
 # TanStack Start Integration
 
-This guide covers using `start-authjs` with TanStack Start (React or Solid).
+This guide covers using `start-authjs` with [TanStack Start](https://tanstack.com/start) (React or Solid).
+
+**External Documentation:**
+- [TanStack Start Docs](https://tanstack.com/start/latest/docs/framework/react/overview) - Official TanStack Start documentation
+- [TanStack Router](https://tanstack.com/router/latest/docs/framework/react/overview) - File-based routing and data loading
+- [Auth.js](https://authjs.dev) - Authentication providers and configuration
 
 ## Installation
 

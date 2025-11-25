@@ -1,10 +1,16 @@
 # SolidStart v2 Alpha
 
-This guide covers using `start-authjs` with SolidStart 2.0 alpha, which uses the new Vite Environment API.
+This guide covers using `start-authjs` with [SolidStart](https://docs.solidjs.com/solid-start) 2.0 alpha, which uses the new Vite Environment API.
 
 ::: warning
 SolidStart v2 is in alpha. APIs may change. For production, use [SolidStart v1](/guide/solidstart-v1).
 :::
+
+**External Documentation:**
+- [SolidStart Docs](https://docs.solidjs.com/solid-start) - Official SolidStart documentation
+- [Solid Router](https://docs.solidjs.com/solid-router) - Routing and data loading
+- [Vite Environment API](https://vite.dev/guide/api-environment) - Vite's multi-environment support
+- [Auth.js](https://authjs.dev) - Authentication providers and configuration
 
 ## Installation
 

@@ -38,9 +38,10 @@ export default defineConfig({
         {
           text: 'API Reference',
           items: [
-            { text: 'TanStackAuth', link: '/api/' },
+            { text: 'StartAuthJS', link: '/api/' },
             { text: 'getSession', link: '/api/get-session' },
             { text: 'auth', link: '/api/auth' },
+            { text: 'authMiddleware', link: '/api/auth-middleware' },
           ],
         },
       ],

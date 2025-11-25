@@ -1,6 +1,11 @@
 # SolidStart v1 (Stable)
 
-This guide covers using `start-authjs` with SolidStart v1, the current stable release.
+This guide covers using `start-authjs` with [SolidStart](https://docs.solidjs.com/solid-start) v1, the current stable release.
+
+**External Documentation:**
+- [SolidStart Docs](https://docs.solidjs.com/solid-start) - Official SolidStart documentation
+- [Solid Router](https://docs.solidjs.com/solid-router) - Routing and data loading
+- [Auth.js](https://authjs.dev) - Authentication providers and configuration
 
 ## Installation
 

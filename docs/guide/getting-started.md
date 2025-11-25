@@ -21,11 +21,17 @@ AUTH_AUTH0_SECRET=your-client-secret
 AUTH_AUTH0_ISSUER=https://your-tenant.auth0.com
 ```
 
-## Basic Setup
+## Framework Guides
+
+For detailed setup instructions, see the framework-specific guides:
+
+- [TanStack Start (React/Solid)](/guide/tanstack-start)
+- [SolidStart v1](/guide/solidstart-v1)
+- [SolidStart v2 Alpha](/guide/solidstart-v2)
+
+## Quick Start
 
 ### 1. Create Auth Configuration
-
-Create a shared auth configuration file:
 
 ```ts
 // src/utils/auth.ts
@@ -44,12 +50,11 @@ export const authConfig: StartAuthJSConfig = {
 
 ### 2. Create API Route Handler
 
-Create the auth API route to handle OAuth callbacks:
+::: code-group
 
-```ts
-// src/routes/api/auth/$.ts (Solid Start)
-// src/routes/api/auth/[...all].ts (React Start)
-import { createFileRoute } from '@tanstack/solid-router'
+```ts [TanStack Start]
+// src/routes/api/auth/$.ts
+import { createFileRoute } from '@tanstack/react-router'
 import { StartAuthJS } from 'start-authjs'
 import { authConfig } from '~/utils/auth'
 
@@ -65,29 +70,76 @@ export const Route = createFileRoute('/api/auth/$')({
 })
 ```
 
-### 3. Fetch Session in Root Route
+```ts [SolidStart (v1 & v2)]
+// src/routes/api/auth/[...solidauth].ts
+import type { APIEvent } from '@solidjs/start/server'
+import { StartAuthJS } from 'start-authjs'
+import { authConfig } from '~/utils/auth'
 
-```ts
+const { GET: AuthGET, POST: AuthPOST } = StartAuthJS(authConfig)
+
+export const GET = (event: APIEvent) => {
+  return AuthGET({ request: event.request, response: new Response() })
+}
+
+export const POST = (event: APIEvent) => {
+  return AuthPOST({ request: event.request, response: new Response() })
+}
+```
+
+:::
+
+::: tip
+The API route code is identical for SolidStart v1 and v2. Only the [config files differ](/guide/solidstart-v1#configuration).
+:::
+
+### 3. Fetch Session
+
+::: code-group
+
+```ts [TanStack Start]
 // src/routes/__root.tsx
-import { createServerFn } from '@tanstack/solid-start'
-import { getRequest } from '@tanstack/solid-start/server'
+import type { AuthSession } from 'start-authjs'
+import { createRootRouteWithContext } from '@tanstack/react-router'
+import { createServerFn } from '@tanstack/react-start'
+import { getRequest } from '@tanstack/react-start/server'
 import { getSession } from 'start-authjs'
 import { authConfig } from '~/utils/auth'
 
+interface RouterContext {
+  session: AuthSession | null
+}
+
 const fetchSession = createServerFn({ method: 'GET' }).handler(async () => {
   const request = getRequest()
-  const session = await getSession(request, authConfig)
-  return session
+  return await getSession(request, authConfig)
 })
 
-export const Route = createRootRoute({
-  beforeLoad: async ({ context }) => {
+export const Route = createRootRouteWithContext<RouterContext>()({
+  beforeLoad: async () => {
     const session = await fetchSession()
-    return { ...context, session }
+    return { session }
   },
   component: RootComponent,
 })
 ```
+
+```ts [SolidStart (v1 & v2)]
+// src/app.tsx
+import { cache } from "@solidjs/router"
+import { getRequestEvent } from "solid-js/web"
+import { getSession, type AuthSession } from "start-authjs"
+import { authConfig } from "~/utils/auth"
+
+export const getSessionData = cache(async (): Promise<AuthSession | null> => {
+  "use server"
+  const event = getRequestEvent()
+  if (!event) return null
+  return getSession(event.request, authConfig)
+}, "session")
+```
+
+:::
 
 ## Supported Providers
 

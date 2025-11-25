@@ -4,8 +4,10 @@
 
 Protect routes by checking the session in `beforeLoad`:
 
-```ts
-import { redirect, createFileRoute } from '@tanstack/solid-router'
+::: code-group
+
+```ts [TanStack Start]
+import { redirect, createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/protected')({
   beforeLoad: ({ context }) => {
@@ -17,21 +19,39 @@ export const Route = createFileRoute('/protected')({
 })
 ```
 
-## Using Middleware
+```tsx [SolidStart]
+// Use Show component to conditionally render
+import { createAsync } from "@solidjs/router"
+import { Show } from "solid-js"
+import { getSessionData } from "~/app"
+
+export default function ProtectedPage() {
+  const session = createAsync(() => getSessionData())
+
+  return (
+    <Show
+      when={session()}
+      fallback={<a href="/api/auth/signin">Sign in required</a>}
+    >
+      <div>Protected content</div>
+    </Show>
+  )
+}
+```
+
+:::
+
+## Using Middleware (TanStack Start)
 
 Create reusable auth middleware:
 
 ```ts
 // src/utils/auth-middleware.ts
-import { redirect } from '@tanstack/solid-router'
-import type { BeforeLoadContext } from '@tanstack/solid-router'
+import { redirect } from '@tanstack/react-router'
 
-export function requireAuth(context: BeforeLoadContext) {
+export function requireAuth({ context }: { context: { session: unknown } }) {
   if (!context.session) {
-    throw redirect({
-      to: '/login',
-      search: { redirect: context.location.pathname },
-    })
+    throw redirect({ to: '/login' })
   }
 }
 ```
