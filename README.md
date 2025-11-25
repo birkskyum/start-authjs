@@ -1,6 +1,10 @@
 # start-authjs
 
-Auth.js (NextAuth.js v5) integration for TanStack Start applications.
+Auth.js integration for [TanStack Start](https://tanstack.com/start) and [SolidStart](https://start.solidjs.com) applications.
+
+## Documentation
+
+**[View full documentation](https://birkskyum.github.io/start-authjs/)**
 
 ## Installation
 
@@ -37,9 +41,10 @@ export const authConfig: StartAuthJSConfig = {
 
 ### 3. Create API Route
 
+**TanStack Start:**
 ```ts
 // src/routes/api/auth/$.ts
-import { createFileRoute } from '@tanstack/solid-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { StartAuthJS } from 'start-authjs'
 import { authConfig } from '~/utils/auth'
 
@@ -53,6 +58,24 @@ export const Route = createFileRoute('/api/auth/$')({
     },
   },
 })
+```
+
+**SolidStart:**
+```ts
+// src/routes/api/auth/[...solidauth].ts
+import type { APIEvent } from '@solidjs/start/server'
+import { StartAuthJS } from 'start-authjs'
+import { authConfig } from '~/utils/auth'
+
+const { GET: AuthGET, POST: AuthPOST } = StartAuthJS(authConfig)
+
+export const GET = (event: APIEvent) => {
+  return AuthGET({ request: event.request, response: new Response() })
+}
+
+export const POST = (event: APIEvent) => {
+  return AuthPOST({ request: event.request, response: new Response() })
+}
 ```
 
 ### 4. Get Session
@@ -71,9 +94,21 @@ const session = await getSession(request, authConfig)
 | `StartAuthJS` | Creates GET/POST handlers for auth routes |
 | `getSession` | Get current session from request |
 | `auth` | Get session with cookie forwarding |
+| `authMiddleware` | Middleware for protected routes |
 | `serverSignIn` | Programmatic sign in |
 | `serverSignOut` | Programmatic sign out |
+
+## Examples
+
+- [TanStack Start + React + Auth0](./examples/tanstack-start-react-auth0)
+- [TanStack Start + Solid + Auth0](./examples/tanstack-start-solid-auth0)
+- [SolidStart v1](./examples/solidstart-v1)
+- [SolidStart v2 Alpha](./examples/solidstart-v2-alpha)
 
 ## Providers
 
 All [Auth.js providers](https://authjs.dev/getting-started/providers) are supported: GitHub, Google, Auth0, Discord, Credentials, and 80+ more.
+
+## License
+
+MIT
