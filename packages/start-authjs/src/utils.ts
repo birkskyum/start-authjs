@@ -71,7 +71,10 @@ export function setEnvDefaults(
 ) {
   coreSetEnvDefaults(envObject, config)
   config.trustHost ??= process.env.NODE_ENV === 'development'
-  config.basePath ??= getBasePath(config)
+  // Only set basePath if AUTH_URL is not defined (to avoid redundant warning)
+  if (!envObject.AUTH_URL) {
+    config.basePath ??= getBasePath(config)
+  }
 }
 
 /**
