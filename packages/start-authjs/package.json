@@ -24,8 +24,9 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist && rimraf ./coverage",
-    "test": "pnpm test:eslint && pnpm test:types && pnpm test:build",
-    "test:eslint": "eslint ./src",
+    "test": "pnpm test:unit && pnpm test:lint && pnpm test:types && pnpm test:build",
+    "test:unit": "vitest run",
+    "test:lint": "oxlint ./src --ignore-pattern '*.test.ts'",
     "test:types": "tsc --noEmit",
     "test:build": "publint --strict && attw --ignore-rules no-resolution --pack .",
     "build": "vite build"
@@ -54,8 +55,11 @@
     "set-cookie-parser": "^2.6.0"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.1",
     "@tanstack/config": "^0.22.1",
     "@types/set-cookie-parser": "^2.4.9",
+    "oxlint": "^1.30.0",
+    "publint": "^0.3.12",
     "vite": "^7.2.4",
     "vitest": "^4.0.13"
   },
