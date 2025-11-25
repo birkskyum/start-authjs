@@ -1,6 +1,8 @@
-# SolidStart + Auth.js Example
+# SolidStart v2 Alpha + Auth.js Example
 
-This example demonstrates Auth.js integration with SolidStart using the `start-authjs` package.
+This example demonstrates Auth.js integration with SolidStart 2.0 alpha (using Vite Environment API) with the `start-authjs` package.
+
+> **Note**: This uses the experimental SolidStart 2.0 alpha. For the stable version, see `solidstart-v1`.
 
 ## Setup
 

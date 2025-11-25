@@ -1,20 +1,20 @@
 {
-  "name": "solidstart-authjs",
+  "name": "solidstart-v1-authjs",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build"
+    "dev": "vinxi dev --port 10000",
+    "build": "vinxi build",
+    "start": "vinxi start"
   },
   "dependencies": {
     "@auth/core": "^0.37.4",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.0",
-    "@solidjs/start": "2.0.0-alpha.0",
-    "@solidjs/vite-plugin-nitro-2": "0.1.0",
+    "@solidjs/start": "^1.2.0",
     "solid-js": "^1.9.9",
     "start-authjs": "workspace:*",
-    "vite": "7.1.10"
+    "vinxi": "0.5.8"
   },
   "engines": {
     "node": ">=22"

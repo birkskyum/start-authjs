@@ -19,6 +19,12 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Frameworks',
+          items: [
+            { text: 'SolidStart', link: '/guide/solidstart' },
+          ],
+        },
+        {
           text: 'Usage',
           items: [
             { text: 'Session Management', link: '/guide/session' },
