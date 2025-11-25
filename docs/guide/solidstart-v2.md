@@ -1,11 +1,15 @@
-# SolidStart Integration
+# SolidStart v2 Alpha
 
-This guide covers using `start-authjs` with SolidStart. Examples are provided for both v1 (stable) and v2 alpha.
+This guide covers using `start-authjs` with SolidStart 2.0 alpha, which uses the new Vite Environment API.
+
+::: warning
+SolidStart v2 is in alpha. APIs may change. For production, use [SolidStart v1](/guide/solidstart-v1).
+:::
 
 ## Installation
 
 ```bash
-pnpm add start-authjs @auth/core
+pnpm add start-authjs @auth/core @solidjs/start@2.0.0-alpha.0 vite@^7
 ```
 
 ## Environment Variables
@@ -22,36 +26,35 @@ AUTH_AUTH0_ISSUER=https://your-tenant.auth0.com
 
 ## Configuration
 
-### SolidStart v1 (Stable)
-
-Create `app.config.ts`:
+SolidStart v2 uses `vite.config.ts` with the Vite Environment API. You need to manually load `.env` files:
 
 ```ts
-import { defineConfig } from "@solidjs/start/config";
-
-export default defineConfig({
-  server: {
-    port: 3000,
-  },
-});
-```
-
-### SolidStart v2 Alpha
-
-For v2 alpha, use `vite.config.ts` and load env manually:
-
-```ts
+// vite.config.ts
 import { defineConfig, loadEnv } from "vite";
 import { solidStart } from "@solidjs/start/config";
+import { nitroV2Plugin } from "@solidjs/vite-plugin-nitro-2";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   Object.assign(process.env, env);
 
   return {
-    plugins: [solidStart()],
+    server: {
+      port: 3000,
+    },
+    plugins: [solidStart(), nitroV2Plugin()],
   };
 });
+```
+
+**`package.json` scripts**:
+```json
+{
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
+  }
+}
 ```
 
 ## Setup
@@ -95,7 +98,7 @@ export const POST = (event: APIEvent) => {
 
 ### 3. Create Session Helper
 
-In SolidStart, use `cache` and `createAsync` from `@solidjs/router` for proper SSR hydration:
+Use `cache` and `createAsync` from `@solidjs/router` for proper SSR hydration:
 
 ```ts
 // src/app.tsx
@@ -136,16 +139,16 @@ function AuthStatus() {
 }
 ```
 
-## Full Examples
+## Full Example
 
-- **SolidStart v1 (stable)**: [examples/solidstart-v1](https://github.com/birkskyum/start-authjs/tree/main/examples/solidstart-v1)
-- **SolidStart v2 alpha**: [examples/solidstart-v2-alpha](https://github.com/birkskyum/start-authjs/tree/main/examples/solidstart-v2-alpha)
+See the complete example at [examples/solidstart-v2-alpha](https://github.com/birkskyum/start-authjs/tree/main/examples/solidstart-v2-alpha).
 
-## Key Differences from TanStack Start
+## Key Differences from v1
 
-| Feature | TanStack Start | SolidStart |
-|---------|---------------|------------|
-| API Routes | `createFileRoute` with `server.handlers` | Export `GET`/`POST` functions |
-| Server Functions | `createServerFn` | `"use server"` directive |
-| Request Access | `getRequest()` | `getRequestEvent().request` |
-| Data Fetching | `createServerFn` + route context | `cache` + `createAsync` |
+| Feature | SolidStart v1 | SolidStart v2 Alpha |
+|---------|---------------|---------------------|
+| Config File | `app.config.ts` | `vite.config.ts` |
+| Build Tool | Vinxi | Vite Environment API |
+| Env Loading | Automatic | Manual with `loadEnv` |
+| Scripts | `vinxi dev/build` | `vite dev/build` |
+| Status | Stable | Alpha |

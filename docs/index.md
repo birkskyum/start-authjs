@@ -10,8 +10,11 @@ hero:
       text: Get Started
       link: /guide/getting-started
     - theme: alt
-      text: SolidStart Guide
-      link: /guide/solidstart
+      text: TanStack Start
+      link: /guide/tanstack-start
+    - theme: alt
+      text: SolidStart
+      link: /guide/solidstart-v1
 
 features:
   - title: Auth.js Powered

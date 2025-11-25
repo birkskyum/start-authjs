@@ -21,7 +21,9 @@ export default defineConfig({
         {
           text: 'Frameworks',
           items: [
-            { text: 'SolidStart', link: '/guide/solidstart' },
+            { text: 'TanStack Start', link: '/guide/tanstack-start' },
+            { text: 'SolidStart v1', link: '/guide/solidstart-v1' },
+            { text: 'SolidStart v2 Alpha', link: '/guide/solidstart-v2' },
           ],
         },
         {
