@@ -80,4 +80,4 @@ All [Auth.js providers](https://authjs.dev/getting-started/providers) are suppor
 
 ## License
 
-MIT
+MIT-license
