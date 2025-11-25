@@ -14,7 +14,7 @@ import { getSession } from 'start-authjs'
 function getSession(
   request: Request,
   config: StartAuthJSConfig
-): Promise<Session | null>
+): Promise<AuthSession | null>
 ```
 
 ## Parameters
@@ -29,8 +29,8 @@ Your auth configuration object.
 
 ## Returns
 
-Returns `Promise<Session | null>`:
-- `Session` object if the user is authenticated
+Returns `Promise<AuthSession | null>`:
+- `AuthSession` object if the user is authenticated (with `user` and `expires` properties)
 - `null` if no valid session exists
 
 ## Usage

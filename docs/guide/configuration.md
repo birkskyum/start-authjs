@@ -17,6 +17,7 @@ export const authConfig: StartAuthJSConfig = {
   ],
 
   // Optional: Base path for auth routes (default: /api/auth)
+  // Note: Not needed if AUTH_URL is set (it includes the path)
   basePath: '/api/auth',
 
   // Optional: Trust the host header (default: true in development)
