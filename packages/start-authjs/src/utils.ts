@@ -69,12 +69,15 @@ export function setEnvDefaults(
   envObject: Record<string, string | undefined>,
   config: StartAuthJSConfig,
 ) {
+  // If AUTH_URL is set, it already includes the basePath - don't set basePath separately
+  // This avoids the "env-url-basepath-redundant" warning from @auth/core
+  if (envObject.AUTH_URL) {
+    delete config.basePath
+  } else if (!config.basePath) {
+    config.basePath = getBasePath(config)
+  }
   coreSetEnvDefaults(envObject, config)
   config.trustHost ??= process.env.NODE_ENV === 'development'
-  // Only set basePath if AUTH_URL is not defined (to avoid redundant warning)
-  if (!envObject.AUTH_URL) {
-    config.basePath ??= getBasePath(config)
-  }
 }
 
 /**

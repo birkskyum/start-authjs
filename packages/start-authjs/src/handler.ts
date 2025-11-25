@@ -1,5 +1,5 @@
 import { Auth } from '@auth/core'
-import { getBasePath, setEnvDefaults } from './utils'
+import { setEnvDefaults } from './utils'
 import { serverSignIn, serverSignOut } from './actions'
 import type { AuthRequestContext, StartAuthJSConfig } from './types'
 
@@ -37,7 +37,6 @@ export function StartAuthJS(
       typeof config === 'object' ? config : await config(context)
 
     setEnvDefaults(process.env, _config)
-    _config.basePath ??= getBasePath(_config)
 
     const { request } = context
 
