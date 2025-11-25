@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   base: '/start-authjs/',
-  title: 'TanStack Start Auth',
+  title: 'Start Auth.js',
   description: 'Auth.js integration for TanStack Start',
   themeConfig: {
     nav: [

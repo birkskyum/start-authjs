@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div class="max-w-2xl mx-auto">
-      <h1 class="text-3xl font-bold mb-4">TanStack Start Auth Example</h1>
+      <h1 class="text-3xl font-bold mb-4">TanStack Start Auth.js Example</h1>
       <p class="text-gray-600 mb-8">
         This example demonstrates auth.js integration with TanStack Start using
         Auth0 OAuth.

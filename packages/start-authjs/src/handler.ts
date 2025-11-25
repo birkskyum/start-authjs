@@ -13,7 +13,7 @@ export interface StartAuthJSHandlers {
 }
 
 /**
- * Create TanStack Start Auth handlers for API routes
+ * Create Start Auth.js handlers for API routes
  *
  * Usage in your API route (e.g., routes/api/auth/[...all].ts):
  * ```ts

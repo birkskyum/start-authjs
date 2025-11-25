@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: TanStack Start Auth
+  name: Start Auth.js
   text: Auth.js integration for TanStack Start
   tagline: Framework-agnostic authentication for TanStack Start applications
   actions:

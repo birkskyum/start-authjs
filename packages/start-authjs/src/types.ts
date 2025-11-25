@@ -2,7 +2,7 @@ import type { AuthConfig } from '@auth/core'
 import type { Session } from '@auth/core/types'
 
 /**
- * Configuration for TanStack Start Auth
+ * Configuration for Start Auth.js
  * Extends @auth/core AuthConfig without the 'raw' option
  */
 export interface StartAuthJSConfig extends Omit<AuthConfig, 'raw'> {}

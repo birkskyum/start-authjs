@@ -1,4 +1,4 @@
-  # TanStack Start Auth.js Documentation
+  # Start Auth.js.js Documentation
 
   This is the documentation site for `start-authjs`, built with
   [VitePress](https://vitepress.dev/).
