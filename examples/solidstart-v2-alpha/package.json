@@ -16,6 +16,11 @@
     "start-authjs": "workspace:*",
     "vite": "7.1.10"
   },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.15",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^4.1.15"
+  },
   "engines": {
     "node": ">=22"
   }

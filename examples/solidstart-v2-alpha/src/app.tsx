@@ -20,28 +20,40 @@ function RootLayout(props: ParentProps) {
   return (
     <MetaProvider>
       <Title>SolidStart + Auth.js</Title>
-      <nav style={{ padding: "1rem", display: "flex", gap: "1rem", "align-items": "center", "background-color": "#f5f5f5" }}>
-        <a href="/">Home</a>
-        <a href="/protected">Protected</a>
-        <div style={{ "margin-left": "auto", display: "flex", gap: "1rem", "align-items": "center" }}>
+      <nav class="p-4 flex gap-4 items-center bg-gray-100">
+        <a href="/" class="hover:underline">Home</a>
+        <a href="/protected" class="hover:underline">Protected</a>
+        <div class="ml-auto flex items-center gap-4">
           <Suspense>
             <Show
               when={session()}
               fallback={
-                <a rel="external" href="/api/auth/signin" style={{ padding: "0.5rem 1rem", "background-color": "#3b82f6", color: "white", "border-radius": "0.25rem", "text-decoration": "none" }}>
+                <a
+                  rel="external"
+                  href="/api/auth/signin"
+                  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
                   Sign In
                 </a>
               }
             >
-              <span>{session()?.user?.name || session()?.user?.email}</span>
-              <a rel="external" href="/api/auth/signout" style={{ padding: "0.5rem 1rem", "background-color": "#ef4444", color: "white", "border-radius": "0.25rem", "text-decoration": "none" }}>
+              <span class="text-gray-600">
+                {session()?.user?.name || session()?.user?.email}
+              </span>
+              <a
+                rel="external"
+                href="/api/auth/signout"
+                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
                 Sign Out
               </a>
             </Show>
           </Suspense>
         </div>
       </nav>
-      <Suspense>{props.children}</Suspense>
+      <main class="p-4">
+        <Suspense>{props.children}</Suspense>
+      </main>
     </MetaProvider>
   );
 }

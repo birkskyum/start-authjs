@@ -44,6 +44,16 @@ importers:
       vinxi:
         specifier: 0.5.8
         version: 0.5.8(@types/node@24.10.1)(db0@0.3.4)(ioredis@5.8.2)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.1.15
+        version: 4.1.17
+      postcss:
+        specifier: ^8.5.1
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^4.1.15
+        version: 4.1.17
 
   examples/solidstart-v2-alpha:
     dependencies:
@@ -71,6 +81,16 @@ importers:
       vite:
         specifier: 7.1.10
         version: 7.1.10(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.1.15
+        version: 4.1.17
+      postcss:
+        specifier: ^8.5.1
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^4.1.15
+        version: 4.1.17
 
   examples/tanstack-start-react-auth0:
     dependencies:
