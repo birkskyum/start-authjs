@@ -1,5 +1,11 @@
 # start-authjs
 
+## 1.0.1
+
+### Patch Changes
+
+- [`3bbe3cf`](https://github.com/birkskyum/start-authjs/commit/3bbe3cf2db6556cb05e7c0f11dbebb797f3e00de) Thanks [@birkskyum](https://github.com/birkskyum)! - add readme to npmjs.com
+
 ## 1.0.0
 
 ### Major Changes
