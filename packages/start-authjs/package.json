@@ -1,6 +1,6 @@
 {
   "name": "start-authjs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Auth.js integration for TanStack Start",
   "author": "Birk Skyum",
   "license": "MIT",
@@ -16,7 +16,7 @@
   },
   "keywords": [
     "tanstack",
-		"solid-start",
+    "solid-start",
     "start",
     "auth",
     "authjs",
