@@ -101,7 +101,7 @@ export type SessionState =
     }
 
 /**
- * Request context for TanStack Start
+ * Request context
  */
 export interface AuthRequestContext {
   request: Request
