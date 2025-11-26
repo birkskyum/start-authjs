@@ -1,6 +1,6 @@
 {
   "name": "start-authjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Auth.js integration for TanStack Start",
   "author": "Birk Skyum",
   "license": "MIT",
