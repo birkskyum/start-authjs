@@ -1,5 +1,11 @@
 # start-authjs
 
+## 1.0.2
+
+### Patch Changes
+
+- [`bd7d5a6`](https://github.com/birkskyum/start-authjs/commit/bd7d5a6dcabf6490236c5f120f95c26c59dac4a8) Thanks [@birkskyum](https://github.com/birkskyum)! - use AuthRequestContext
+
 ## 1.0.1
 
 ### Patch Changes
